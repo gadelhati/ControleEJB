@@ -33,19 +33,16 @@ public class Pessoa implements Serializable {
 	private Date nascimento;
 	@Column(length=45, nullable = false)
 	private String nome;
-	@Column(length=15)
-	private String sexo;
 	
 	public Pessoa() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Pessoa(long id, Date nascimento, String nome, String sexo) {
+	public Pessoa(long id, Date nascimento, String nome) {
 		super();
 		this.id = id;
 		this.nascimento = nascimento;
 		this.nome = nome;
-		this.sexo = sexo;
 	}
 	@Override
 	public boolean equals(Object obj) {
@@ -68,11 +65,6 @@ public class Pessoa implements Serializable {
 				return false;
 		} else if (!nome.equals(other.nome))
 			return false;
-		if (sexo == null) {
-			if (other.sexo != null)
-				return false;
-		} else if (!sexo.equals(other.sexo))
-			return false;
 		return true;
 	}
 	public long getId() {
@@ -84,9 +76,6 @@ public class Pessoa implements Serializable {
 	public String getNome() {
 		return nome;
 	}
-	public String getSexo() {
-		return sexo;
-	}
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -94,7 +83,6 @@ public class Pessoa implements Serializable {
 		result = prime * result + (int) (id ^ (id >>> 32));
 		result = prime * result + ((nascimento == null) ? 0 : nascimento.hashCode());
 		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
-		result = prime * result + ((sexo == null) ? 0 : sexo.hashCode());
 		return result;
 	}
 	public void setId(long id) {
@@ -106,11 +94,8 @@ public class Pessoa implements Serializable {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-	public void setSexo(String sexo) {
-		this.sexo = sexo;
-	}
 	@Override
 	public String toString() {
-		return "Pessoa [id=" + id + ", nascimento=" + nascimento + ", nome=" + nome + ", sexo=" + sexo + "]";
+		return "Pessoa [id=" + id + ", nascimento=" + nascimento + ", nome=" + nome + "]";
 	}
 }

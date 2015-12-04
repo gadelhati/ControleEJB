@@ -7,6 +7,7 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
@@ -27,28 +28,41 @@ public class Recurso extends Ferramenta implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	@Temporal(TemporalType.DATE)
-	private Date horasDia;
+	private Date contratacao;
+	@Temporal(TemporalType.DATE)
+	private Date aposentadoria;//aposentadoria, encerramento
+	@Temporal(TemporalType.DATE)
+	private Date depreciação;
+	@Column
+	private byte interesse;
 	@Column
 	private long qtdMin;
 	@Column
 	private long qtdMax;
 	
 	@OneToMany(cascade=CascadeType.ALL)
-	private List<Recurso> recursos;
+	private List<Recurso> recursos;//DEPENDENTES
+	@ManyToMany
+	private List<Cargo> cargos;
 	
 	public Recurso() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Recurso(Date horasDia, long qtdMin, long qtdMax, List<Recurso> recursos) {
+	public Recurso(Date contratacao, Date aposentadoria, Date depreciação, byte interesse, long qtdMin, long qtdMax,
+			List<Recurso> recursos, List<Cargo> cargos) {
 		super();
-		this.horasDia = horasDia;
+		this.contratacao = contratacao;
+		this.aposentadoria = aposentadoria;
+		this.depreciação = depreciação;
+		this.interesse = interesse;
 		this.qtdMin = qtdMin;
 		this.qtdMax = qtdMax;
 		this.recursos = recursos;
+		this.cargos = cargos;
 	}
-	public Recurso(long id, byte focoTotal) {
-		super(id, focoTotal);
+	public Recurso(long id, Ferramenta ferramenta) {
+		super(id, ferramenta);
 		// TODO Auto-generated constructor stub
 	}
 	@Override
@@ -60,10 +74,27 @@ public class Recurso extends Ferramenta implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		Recurso other = (Recurso) obj;
-		if (horasDia == null) {
-			if (other.horasDia != null)
+		if (aposentadoria == null) {
+			if (other.aposentadoria != null)
 				return false;
-		} else if (!horasDia.equals(other.horasDia))
+		} else if (!aposentadoria.equals(other.aposentadoria))
+			return false;
+		if (cargos == null) {
+			if (other.cargos != null)
+				return false;
+		} else if (!cargos.equals(other.cargos))
+			return false;
+		if (contratacao == null) {
+			if (other.contratacao != null)
+				return false;
+		} else if (!contratacao.equals(other.contratacao))
+			return false;
+		if (depreciação == null) {
+			if (other.depreciação != null)
+				return false;
+		} else if (!depreciação.equals(other.depreciação))
+			return false;
+		if (interesse != other.interesse)
 			return false;
 		if (qtdMax != other.qtdMax)
 			return false;
@@ -76,8 +107,23 @@ public class Recurso extends Ferramenta implements Serializable {
 			return false;
 		return true;
 	}
-	public Date getHorasDia() {
-		return horasDia;
+	public Date getAposentadoria() {
+		return aposentadoria;
+	}
+	public List<Cargo> getCargos() {
+		return cargos;
+	}
+	public Cargo getCargo(int cargo) {
+		return cargos.get(cargo);
+	}
+	public Date getContratacao() {
+		return contratacao;
+	}
+	public Date getDepreciação() {
+		return depreciação;
+	}
+	public byte getInteresse() {
+		return interesse;
 	}
 	public long getQtdMax() {
 		return qtdMax;
@@ -88,18 +134,40 @@ public class Recurso extends Ferramenta implements Serializable {
 	public List<Recurso> getRecursos() {
 		return recursos;
 	}
+	public Recurso getRecurso(int recurso) {
+		return recursos.get(recurso);
+	}
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = super.hashCode();
-		result = prime * result + ((horasDia == null) ? 0 : horasDia.hashCode());
+		result = prime * result + ((aposentadoria == null) ? 0 : aposentadoria.hashCode());
+		result = prime * result + ((cargos == null) ? 0 : cargos.hashCode());
+		result = prime * result + ((contratacao == null) ? 0 : contratacao.hashCode());
+		result = prime * result + ((depreciação == null) ? 0 : depreciação.hashCode());
+		result = prime * result + interesse;
 		result = prime * result + (int) (qtdMax ^ (qtdMax >>> 32));
 		result = prime * result + (int) (qtdMin ^ (qtdMin >>> 32));
 		result = prime * result + ((recursos == null) ? 0 : recursos.hashCode());
 		return result;
 	}
-	public void setHorasDia(Date horasDia) {
-		this.horasDia = horasDia;
+	public void setAposentadoria(Date aposentadoria) {
+		this.aposentadoria = aposentadoria;
+	}
+	public void setCargos(List<Cargo> cargos) {
+		this.cargos = cargos;
+	}
+	public void setCargo(Cargo cargo) {
+		this.cargos.add(cargo);
+	}
+	public void setContratacao(Date contratacao) {
+		this.contratacao = contratacao;
+	}
+	public void setDepreciação(Date depreciação) {
+		this.depreciação = depreciação;
+	}
+	public void setInteresse(byte interesse) {
+		this.interesse = interesse;
 	}
 	public void setQtdMax(long qtdMax) {
 		this.qtdMax = qtdMax;
@@ -110,9 +178,13 @@ public class Recurso extends Ferramenta implements Serializable {
 	public void setRecursos(List<Recurso> recursos) {
 		this.recursos = recursos;
 	}
+	public void setRecurso(Recurso recurso) {
+		this.recursos.add(recurso);
+	}
 	@Override
 	public String toString() {
-		return "Recurso [horasDia=" + horasDia + ", qtdMin=" + qtdMin + ", qtdMax=" + qtdMax + ", recursos=" + recursos
-				+ "]";
-	}
+		return "Recurso [contratacao=" + contratacao + ", aposentadoria=" + aposentadoria + ", depreciação="
+				+ depreciação + ", interesse=" + interesse + ", qtdMin=" + qtdMin + ", qtdMax=" + qtdMax + ", recursos="
+				+ recursos + ", cargos=" + cargos + "]";
+	}	
 }

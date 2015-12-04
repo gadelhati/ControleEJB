@@ -21,6 +21,7 @@
 		<class>br.eti.gadelha.ejb.controle.modelo.oque.quem.Usuario"</class>
 		<class>br.eti.gadelha.ejb.controle.modelo.oque.Ferramenta"</class>
 		<class>br.eti.gadelha.ejb.controle.modelo.oque.Recurso"</class>
+		<class>br.eti.gadelha.ejb.controle.modelo.oque.Cargo"</class>
 		<class>br.eti.gadelha.ejb.controle.modelo.oque.Funcao"</class>
 		<class>br.eti.gadelha.ejb.controle.modelo.oque.Grupo"</class>
 		

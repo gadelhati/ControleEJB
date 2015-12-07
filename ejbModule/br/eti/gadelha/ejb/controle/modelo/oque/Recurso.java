@@ -32,7 +32,7 @@ public class Recurso extends Ferramenta implements Serializable {
 	@Temporal(TemporalType.DATE)
 	private Date aposentadoria;//aposentadoria, encerramento
 	@Temporal(TemporalType.DATE)
-	private Date depreciação;
+	private Date depreciacao;
 	@Column
 	private byte interesse;
 	@Column
@@ -49,12 +49,12 @@ public class Recurso extends Ferramenta implements Serializable {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Recurso(Date contratacao, Date aposentadoria, Date depreciação, byte interesse, long qtdMin, long qtdMax,
+	public Recurso(Date contratacao, Date aposentadoria, Date depreciacao, byte interesse, long qtdMin, long qtdMax,
 			List<Recurso> recursos, List<Cargo> cargos) {
 		super();
 		this.contratacao = contratacao;
 		this.aposentadoria = aposentadoria;
-		this.depreciação = depreciação;
+		this.depreciacao = depreciacao;
 		this.interesse = interesse;
 		this.qtdMin = qtdMin;
 		this.qtdMax = qtdMax;
@@ -89,10 +89,10 @@ public class Recurso extends Ferramenta implements Serializable {
 				return false;
 		} else if (!contratacao.equals(other.contratacao))
 			return false;
-		if (depreciação == null) {
-			if (other.depreciação != null)
+		if (depreciacao == null) {
+			if (other.depreciacao != null)
 				return false;
-		} else if (!depreciação.equals(other.depreciação))
+		} else if (!depreciacao.equals(other.depreciacao))
 			return false;
 		if (interesse != other.interesse)
 			return false;
@@ -119,8 +119,8 @@ public class Recurso extends Ferramenta implements Serializable {
 	public Date getContratacao() {
 		return contratacao;
 	}
-	public Date getDepreciação() {
-		return depreciação;
+	public Date getDepreciacao() {
+		return depreciacao;
 	}
 	public byte getInteresse() {
 		return interesse;
@@ -144,7 +144,7 @@ public class Recurso extends Ferramenta implements Serializable {
 		result = prime * result + ((aposentadoria == null) ? 0 : aposentadoria.hashCode());
 		result = prime * result + ((cargos == null) ? 0 : cargos.hashCode());
 		result = prime * result + ((contratacao == null) ? 0 : contratacao.hashCode());
-		result = prime * result + ((depreciação == null) ? 0 : depreciação.hashCode());
+		result = prime * result + ((depreciacao == null) ? 0 : depreciacao.hashCode());
 		result = prime * result + interesse;
 		result = prime * result + (int) (qtdMax ^ (qtdMax >>> 32));
 		result = prime * result + (int) (qtdMin ^ (qtdMin >>> 32));
@@ -163,8 +163,8 @@ public class Recurso extends Ferramenta implements Serializable {
 	public void setContratacao(Date contratacao) {
 		this.contratacao = contratacao;
 	}
-	public void setDepreciação(Date depreciação) {
-		this.depreciação = depreciação;
+	public void setDepreciacao(Date depreciacao) {
+		this.depreciacao = depreciacao;
 	}
 	public void setInteresse(byte interesse) {
 		this.interesse = interesse;
@@ -184,7 +184,7 @@ public class Recurso extends Ferramenta implements Serializable {
 	@Override
 	public String toString() {
 		return "Recurso [contratacao=" + contratacao + ", aposentadoria=" + aposentadoria + ", depreciação="
-				+ depreciação + ", interesse=" + interesse + ", qtdMin=" + qtdMin + ", qtdMax=" + qtdMax + ", recursos="
+				+ depreciacao + ", interesse=" + interesse + ", qtdMin=" + qtdMin + ", qtdMax=" + qtdMax + ", recursos="
 				+ recursos + ", cargos=" + cargos + "]";
 	}	
 }

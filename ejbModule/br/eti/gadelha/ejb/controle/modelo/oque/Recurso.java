@@ -4,9 +4,9 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.PrimaryKeyJoinColumn;
@@ -40,9 +40,10 @@ public class Recurso extends Ferramenta implements Serializable {
 	@Column
 	private long qtdMax;
 	
-	@OneToMany(cascade=CascadeType.ALL)
+	@OneToMany(fetch = FetchType.EAGER)
+	//TODOS QUE TERMINAM COM ...Many SÃO LAZY NÃO EAGER
 	private List<Recurso> recursos;//DEPENDENTES
-	@ManyToMany
+	@ManyToMany(fetch = FetchType.EAGER)
 	private List<Cargo> cargos;
 	
 	public Recurso() {

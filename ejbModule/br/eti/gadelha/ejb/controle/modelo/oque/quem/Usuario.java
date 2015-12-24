@@ -26,7 +26,7 @@ public class Usuario extends Cargo implements Serializable {
 	private static final long serialVersionUID = 1L;
 	@Column(length=11)
 	private String apelido;
-	@Column(length=11, unique = true)
+	@Column(length=11, nullable = false, unique = true)
 	private String email;
 	@Column(length=11, nullable = false)
 	private String senha;

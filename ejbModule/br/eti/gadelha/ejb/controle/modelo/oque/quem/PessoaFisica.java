@@ -28,7 +28,7 @@ public class PessoaFisica extends Pessoa implements Serializable {
 	private String rg;
 	@Column(length=15, unique = true, nullable = false)
 	private String cpf;
-	@Column(unique = true)
+	@Column
 	private String assinatura;
 	@Column(length=15)
 	private Boolean sexo;

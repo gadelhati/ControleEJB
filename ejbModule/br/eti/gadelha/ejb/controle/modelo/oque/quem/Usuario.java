@@ -24,13 +24,13 @@ import br.eti.gadelha.ejb.controle.modelo.oque.Cargo;
 public class Usuario extends Cargo implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
-	@Column(length=11)
+	@Column(length=16)
 	private String apelido;
-	@Column(length=11, nullable = false, unique = true)
+	@Column(length=16, nullable = false, unique = true)
 	private String email;
-	@Column(length=11, nullable = false)
+	@Column(length=16, nullable = false)
 	private String senha;
-	@Column(length=11, nullable = false)
+	@Column(length=16, nullable = false)
 	private String nivelDeAcesso;//ADMINISTRADOR, GESTOR, GERENTE, OPERADOR(local e geral)
 	@Temporal(TemporalType.DATE)
 	private Date cadastro;

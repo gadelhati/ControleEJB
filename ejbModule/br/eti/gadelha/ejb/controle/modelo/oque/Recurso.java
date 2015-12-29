@@ -40,8 +40,7 @@ public class Recurso extends Ferramenta implements Serializable {
 	@Column
 	private long qtdMax;
 	
-	@OneToMany(fetch = FetchType.EAGER)
-	//TODOS QUE TERMINAM COM ...Many SÃO LAZY NÃO EAGER
+	@OneToMany(fetch = FetchType.EAGER)//TODOS QUE TERMINAM COM ...Many SÃO LAZY NÃO EAGER
 	private List<Recurso> recursos;//DEPENDENTES
 	@ManyToMany(fetch = FetchType.EAGER)
 	private List<Cargo> cargos;

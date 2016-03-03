@@ -20,18 +20,20 @@ public class Cargo implements Serializable {
 	private static final long serialVersionUID = 1L;
 	@Id @Column(length=16, nullable = false, unique = true)
 	private long id;
+	@Column(length=45, nullable = false)
+	private String nome;
 	@Temporal(TemporalType.DATE)
 	private Date horasDia;
 	@Column
 	private int influencia;
-	
 	public Cargo() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Cargo(long id, Date horasDia, int influencia) {
+	public Cargo(long id, String nome, Date horasDia, int influencia) {
 		super();
 		this.id = id;
+		this.nome = nome;
 		this.horasDia = horasDia;
 		this.influencia = influencia;
 	}
@@ -53,6 +55,11 @@ public class Cargo implements Serializable {
 			return false;
 		if (influencia != other.influencia)
 			return false;
+		if (nome == null) {
+			if (other.nome != null)
+				return false;
+		} else if (!nome.equals(other.nome))
+			return false;
 		return true;
 	}
 	public Date getHorasDia() {
@@ -64,6 +71,10 @@ public class Cargo implements Serializable {
 	public int getInfluencia() {
 		return influencia;
 	}
+	
+	public String getNome() {
+		return nome;
+	}
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -71,6 +82,7 @@ public class Cargo implements Serializable {
 		result = prime * result + ((horasDia == null) ? 0 : horasDia.hashCode());
 		result = prime * result + (int) (id ^ (id >>> 32));
 		result = prime * result + influencia;
+		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
 		return result;
 	}
 	public void setHorasDia(Date horasDia) {
@@ -82,8 +94,11 @@ public class Cargo implements Serializable {
 	public void setInfluencia(int influencia) {
 		this.influencia = influencia;
 	}
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
 	@Override
 	public String toString() {
-		return "Cargo [id=" + id + ", horasDia=" + horasDia + ", influencia=" + influencia + "]";
+		return "Cargo [id=" + id + ", nome=" + nome + ", horasDia=" + horasDia + ", influencia=" + influencia + "]";
 	}
 }

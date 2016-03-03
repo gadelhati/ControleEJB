@@ -34,12 +34,13 @@ public class Usuario extends Cargo implements Serializable {
 	private String nivelDeAcesso;//ADMINISTRADOR, GESTOR, GERENTE, OPERADOR(local e geral)
 	@Temporal(TemporalType.DATE)
 	private Date cadastro;
+	
 	public Usuario() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Usuario(long id, Date horasDia, int influencia) {
-		super(id, horasDia, influencia);
+	public Usuario(long id, String nome, Date horasDia, int influencia) {
+		super(id, nome, horasDia, influencia);
 		// TODO Auto-generated constructor stub
 	}
 	public Usuario(String apelido, String email, String senha, String nivelDeAcesso, Date cadastro) {

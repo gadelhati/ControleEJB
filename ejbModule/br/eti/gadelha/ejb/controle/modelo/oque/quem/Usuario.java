@@ -2,6 +2,7 @@ package br.eti.gadelha.ejb.controle.modelo.oque.quem;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,6 +11,7 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import br.eti.gadelha.ejb.controle.modelo.como.Funcao;
 import br.eti.gadelha.ejb.controle.modelo.oque.Cargo;
 
 /**
@@ -31,7 +33,7 @@ public class Usuario extends Cargo implements Serializable {
 	@Column(length=16, nullable = false)
 	private String senha;
 	@Column(length=16, nullable = false)
-	private String nivelDeAcesso;//ADMINISTRADOR, GESTOR, GERENTE, OPERADOR(local e geral)
+	private String nivelDeAcesso;//CLIENTE, ADMINISTRADOR, GESTOR, GERENTE, OPERADOR(local e geral), VOLUNTÁRIO
 	@Temporal(TemporalType.DATE)
 	private Date cadastro;
 	
@@ -39,8 +41,8 @@ public class Usuario extends Cargo implements Serializable {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Usuario(long id, String nome, Date horasDia, int influencia) {
-		super(id, nome, horasDia, influencia);
+	public Usuario(long id, String nome, Date horasDia, int influencia, List<Funcao> funcoes) {
+		super(id, nome, horasDia, influencia, funcoes);
 		// TODO Auto-generated constructor stub
 	}
 	public Usuario(String apelido, String email, String senha, String nivelDeAcesso, Date cadastro) {

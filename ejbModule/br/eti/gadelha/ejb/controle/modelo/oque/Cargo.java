@@ -2,15 +2,20 @@ package br.eti.gadelha.ejb.controle.modelo.oque;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+
+import br.eti.gadelha.ejb.controle.modelo.como.Funcao;
 
 @Entity
 @Table(name="cargo")
@@ -26,16 +31,21 @@ public class Cargo implements Serializable {
 	private Date horasDia;
 	@Column
 	private int influencia;
+	
+	@ManyToMany(fetch = FetchType.EAGER)
+	private List<Funcao> funcoes;
+	
 	public Cargo() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Cargo(long id, String nome, Date horasDia, int influencia) {
+	public Cargo(long id, String nome, Date horasDia, int influencia, List<Funcao> funcoes) {
 		super();
 		this.id = id;
 		this.nome = nome;
 		this.horasDia = horasDia;
 		this.influencia = influencia;
+		this.funcoes = funcoes;
 	}
 	@Override
 	public boolean equals(Object obj) {
@@ -46,6 +56,11 @@ public class Cargo implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		Cargo other = (Cargo) obj;
+		if (funcoes == null) {
+			if (other.funcoes != null)
+				return false;
+		} else if (!funcoes.equals(other.funcoes))
+			return false;
 		if (horasDia == null) {
 			if (other.horasDia != null)
 				return false;
@@ -62,6 +77,12 @@ public class Cargo implements Serializable {
 			return false;
 		return true;
 	}
+	public Funcao getFuncao(int funcao) {
+		return funcoes.get(funcao);
+	}
+	public List<Funcao> getFuncoes() {
+		return funcoes;
+	}
 	public Date getHorasDia() {
 		return horasDia;
 	}
@@ -71,7 +92,6 @@ public class Cargo implements Serializable {
 	public int getInfluencia() {
 		return influencia;
 	}
-	
 	public String getNome() {
 		return nome;
 	}
@@ -79,11 +99,18 @@ public class Cargo implements Serializable {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result + ((funcoes == null) ? 0 : funcoes.hashCode());
 		result = prime * result + ((horasDia == null) ? 0 : horasDia.hashCode());
 		result = prime * result + (int) (id ^ (id >>> 32));
 		result = prime * result + influencia;
 		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
 		return result;
+	}
+	public void setfuncao(Funcao funcao) {
+		this.funcoes.add(funcao);
+	}
+	public void setFuncoes(List<Funcao> funcoes) {
+		this.funcoes = funcoes;
 	}
 	public void setHorasDia(Date horasDia) {
 		this.horasDia = horasDia;
@@ -99,6 +126,7 @@ public class Cargo implements Serializable {
 	}
 	@Override
 	public String toString() {
-		return "Cargo [id=" + id + ", nome=" + nome + ", horasDia=" + horasDia + ", influencia=" + influencia + "]";
+		return "Cargo [id=" + id + ", nome=" + nome + ", horasDia=" + horasDia + ", influencia=" + influencia
+				+ ", funcoes=" + funcoes + "]";
 	}
 }

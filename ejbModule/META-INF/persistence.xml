@@ -22,8 +22,9 @@
 		<class>br.eti.gadelha.ejb.controle.modelo.oque.Ferramenta"</class>
 		<class>br.eti.gadelha.ejb.controle.modelo.oque.Recurso"</class>
 		<class>br.eti.gadelha.ejb.controle.modelo.oque.Cargo"</class>
-		<class>br.eti.gadelha.ejb.controle.modelo.oque.Funcao"</class>
 		<class>br.eti.gadelha.ejb.controle.modelo.oque.Grupo"</class>
+		
+		<class>br.eti.gadelha.ejb.controle.modelo.como.Funcao"</class>
 		
 		<class>br.eti.gadelha.ejb.controle.modelo.paraQue.Historia"</class>
 		<class>br.eti.gadelha.ejb.controle.modelo.paraQue.Planejado"</class>

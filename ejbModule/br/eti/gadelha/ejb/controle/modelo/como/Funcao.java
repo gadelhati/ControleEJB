@@ -1,4 +1,4 @@
-package br.eti.gadelha.ejb.controle.modelo.oque;
+package br.eti.gadelha.ejb.controle.modelo.como;
 
 import java.io.Serializable;
 

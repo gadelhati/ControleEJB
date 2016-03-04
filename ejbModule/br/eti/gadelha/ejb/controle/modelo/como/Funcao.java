@@ -25,8 +25,6 @@ public class Funcao implements Serializable {
 	@Column(length=45, nullable = false)
 	private String nome;
 	
-	//MANY TO MANY!
-	
 	public Funcao() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -57,6 +55,9 @@ public class Funcao implements Serializable {
 		} else if (!nome.equals(other.nome))
 			return false;
 		return true;
+	}
+	public long getId() {
+		return id;
 	}
 	public String getNome() {
 		return nome;

@@ -28,6 +28,7 @@ public class Projeto implements Serializable {
 	private long id;
 	@Column(length=45, nullable = false)
 	private String nome;
+	
 	@ManyToOne(cascade=CascadeType.ALL)
 	private Programa programa;
 	@OneToMany(cascade=CascadeType.ALL)
